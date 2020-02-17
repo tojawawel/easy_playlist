@@ -3,5 +3,7 @@
 <% else %>
   <%= link_to 'New user', new_user_registration_path %> <br>
   <%= link_to 'Login', new_user_session_path %> <br>
+  <%= link_to 'Login with spotify', user_spotify_omniauth_authorize_path %> <br> 
+  
 <% end %>
 

@@ -7,6 +7,7 @@ ruby '2.6.5'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'httparty', '~> 0.13.7'
+gem 'omniauth-spotify'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
@@ -18,6 +19,7 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'pry', '~> 0.12.2'
   gem 'pry-rails'
+  gem 'pry-nav'
 end
 
 group :development do
