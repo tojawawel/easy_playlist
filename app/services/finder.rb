@@ -3,33 +3,23 @@
 class Finder
   BASE_URL = "https://api.spotify.com/v1/search?q="
 
-  def self.get_track(name, type = "track", identifier = "uri")
+  def call(name, type, auth_token)
     url = build_url(name,type)
-    track = response(url)
-    get_result(track, type, identifier)
-  end
-
-  def self.get_playlist(name, type = "playlist", identifier = "id")
-    url = build_url(name,type)
-    playlist = response(url)
-    get_result(playlist, type, identifier)
+    response = get_response(url, auth_token)
+    get_result(response, type)
   end
 
   private
   
-  def self.build_url(name,type)
+  def build_url(name, type)
     "#{BASE_URL}#{name}&type=#{type}&limit=1"
   end
   
-  def self.response(url_adress)
-    HTTParty.get(url_adress, headers: { Authorization: "Bearer #{token}" })
-  end
-  
-  def self.token
-    Rails.application.credentials.spotify[:authorization_token]
+  def get_response(url_adress, auth_token)
+    HTTParty.get(url_adress, headers: { Authorization: "Bearer #{auth_token}" })
   end
 
-  def self.get_result(item_type ,type, identifier)
-    item_type[type.pluralize]['items'].first[identifier] if item_type[type.pluralize]['items'].present?
+  def get_result(item, type)
+    item[type.pluralize]['items'].first['id'] if item[type.pluralize]['items'].present?
   end
 end

@@ -3,41 +3,37 @@
 class PlaylistAdder
   BASE_URL = "https://api.spotify.com/v1/playlists/"
 
-  def self.add_to_playlist(name = 'Nonono', path = 'app/fixtures/songs.txt')
-    playlist = playlist_id(name)
-    songlist = list_of_tracks(path)
+  def call(name = 'szydlowska 2020', path = 'app/fixtures/songs.txt', token) 
+    playlist = find_playlist(name, token)
+    songlist = create_songlist(path, token)
     url = build_url(playlist, songlist)
-    add_tracks(url)
+    add_tracks(url, token)
   end
 
-  private
-  
-  def self.playlist_id(name)
-    Finder.get_playlist(name)
+  def find_playlist(name, token)
+    Finder.new.call(name, 'playlist', token)
   end
 
-  def self.list_of_tracks(path, list_of_uris = [])
-    File.open(path).each {|song_title| add_uri_to_list(song_title, list_of_uris) } 
-    list_of_uris.join(',')
+  def create_songlist(path, list_of_songs = [], token)
+    File.open(path).each {|song_title| add_song_to_list(song_title, list_of_songs, token) } 
+    list_of_songs.join(',')
   end
 
-  def self.add_uri_to_list(name, list)
-    list << track_uri(name) if track_uri(name)
+  def add_song_to_list(name, list, token)
+    track = find_track(name, token)
+    list << track if track.present?
   end
 
-  def self.track_uri(name)
-    Finder.get_track(name)
+  def find_track(name, token)
+    id = Finder.new.call(name, 'track', token)
+    "spotify:track:#{id}" unless id.nil?
   end
 
-  def self.build_url(playlist_id, list_of_tracks)
-    "#{BASE_URL}#{playlist_id}/tracks?uris=#{list_of_tracks}"
+  def build_url(playlist_name, created_songlist)
+    "#{BASE_URL}#{playlist_name}/tracks?uris=#{created_songlist}"
   end
 
-  def self.token
-    Rails.application.credentials.spotify[:authorization_token]
-  end
-
-  def self.add_tracks(url_adress)
+  def add_tracks(url_adress, token)
     HTTParty.post(url_adress, headers: { Authorization: "Bearer #{token}" }
     )
   end
