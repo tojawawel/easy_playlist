@@ -7,8 +7,9 @@ Devise.setup do |config|
   config.omniauth :spotify, Rails.application.credentials.spotify[:client_id], 
                             Rails.application.credentials.spotify[:client_secret], 
                             scope: 
-                              %w(playlist-modify-private, 
-                              user-read-email).join(' ')
+                              %w(playlist-modify-private,
+                                 playlist-modify-public
+                                 user-read-email).join(' ')
                             
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
