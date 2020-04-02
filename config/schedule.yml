@@ -1,0 +1,4 @@
+refresh_user_token:
+  cron: "18 * * * *"
+  class: "UpdateTokensJob"
+  queue: default
