@@ -2,7 +2,7 @@ class AddToPlaylistJob < ApplicationJob
   queue_as :default
 
   def perform(token)
+    sleep 15
     PlaylistAdder.new.call(token)
-    sleep 5
   end
 end
