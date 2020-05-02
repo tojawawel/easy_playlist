@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title EasyPlaylist
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    - if user_signed_in?
+      =render 'layouts/user_navbar'
+    - else
+      =render 'layouts/guest_navbar'
+    = yield

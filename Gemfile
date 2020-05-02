@@ -7,6 +7,7 @@ ruby '2.6.5'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'httparty', '~> 0.13.7'
+gem 'haml'
 gem 'omniauth-spotify'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
@@ -16,6 +17,8 @@ gem 'sass-rails', '>= 6'
 gem 'redis'
 gem 'sidekiq'
 gem 'sidekiq-cron'
+gem 'simple_form'
+gem "paperclip", "~> 6.0.0"
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
