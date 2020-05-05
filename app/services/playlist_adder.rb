@@ -3,12 +3,14 @@
 class PlaylistAdder
   BASE_URL = "https://api.spotify.com/v1/playlists/"
 
-  def call(name = 'szydlowska 2020', path = 'app/fixtures/songs.txt', token) 
+  def call(name, path, token) 
     playlist = find_playlist(name, token)
     songlist = create_songlist(path, token)
     url = build_url(playlist, songlist)
     add_tracks(url, token)
   end
+
+  private
 
   def find_playlist(name, token)
     Finder.new.call(name, 'playlist', token)

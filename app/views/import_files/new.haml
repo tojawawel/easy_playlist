@@ -1,8 +1,5 @@
 = simple_form_for @import_file do |f|
   = f.error_notification
-  %form
-    .row
-      .form-group.col-8
-        =f.input :data, as: :file, required: false, error: true, label: "File"
-    .row
-    =f.submit class: "btn btn-primary"
+  =f.input :data, as: :file, required: false, error: true, label: "File"
+  =f.input :playlist_name, as: :string, required: false, error: true, label: "Playlist name"
+  =f.submit class: "btn btn-primary"
