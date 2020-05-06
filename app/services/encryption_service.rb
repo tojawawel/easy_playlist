@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 class EncryptionService
+  #zoba
   SALT = Rails.application.credentials.salt
   KEY = ActiveSupport::KeyGenerator.new('password').generate_key(SALT, 32).freeze
 
