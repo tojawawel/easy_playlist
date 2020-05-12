@@ -9,7 +9,7 @@ class AdditionsController < ApplicationController
     data = params[:addition][:data]
     name = params[:addition][:playlist_name]
     
-    PlaylistAdder.new.call(name, data,auth_token)
+    AddSongsToPlaylist.new(name, data, auth_token).call
 
     if @addition.save
       flash[:success] = 'addition was successfully created'
