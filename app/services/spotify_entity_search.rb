@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-
-class Finder
+class SpotifyEntitySearch
   BASE_URL = "https://api.spotify.com/v1/search?q="
 
   def call(name, type, auth_token)

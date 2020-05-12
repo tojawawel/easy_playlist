@@ -1,12 +1,11 @@
 # frozen_string_literal: true
-
 class AccessTokenRefresher
   URL = "https://accounts.spotify.com/api/token"
 
   def call(user)
     token = new_access_token(user)
-    encrypted_new_access_token = EncryptionService.encrypt(token)
-    user.update(token: encrypted_new_access_token)
+    new_encrypted_access_token = EncryptionService.encrypt(token)
+    user.update(token: new_encrypted_access_token)
   end
 
   def new_access_token(user)
