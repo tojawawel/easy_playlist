@@ -2,27 +2,34 @@
 class AccessTokenRefresher
   URL = "https://accounts.spotify.com/api/token"
 
-  def call(user)
-    token = new_access_token(user)
+  def initialize(user)
+    @user = user
+  end
+
+  def call
+    token = new_access_token
     new_encrypted_access_token = EncryptionService.encrypt(token)
     user.update(token: new_encrypted_access_token)
   end
 
-  def new_access_token(user)
-    response = HTTParty.post(URL, params(user))
+  private
+  
+  attr_reader :user
+
+  def new_access_token
+    response = HTTParty.post(URL, params)
     response['access_token']
   end
 
-  private
 
-  def params(user)
+  def params
       {
         headers: {authorization: "Basic #{auth_64}" , 'content-type': "application/x-www-form-urlencoded" }, 
-        body: {grant_type: 'refresh_token', refresh_token: get_refresh_token(user)}
+        body: {grant_type: 'refresh_token', refresh_token: get_refresh_token}
       }
   end
 
-  def get_refresh_token(user)
+  def get_refresh_token
     EncryptionService.decrypt(user.refresh_token)
   end
 

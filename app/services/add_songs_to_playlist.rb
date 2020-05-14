@@ -20,7 +20,7 @@ class AddSongsToPlaylist
   attr_reader :playlist_name, :path, :token
 
   def find_playlist
-    SpotifyEntitySearch.new.call(playlist_name, 'playlist', token)
+    SpotifyEntitySearch.new(playlist_name, 'playlist', token).call
   end
 
   def create_songlist(list_of_songs = [])
@@ -34,7 +34,7 @@ class AddSongsToPlaylist
   end
 
   def find_track(song_name)
-    id = SpotifyEntitySearch.new.call(song_name, 'track', token)
+    id = SpotifyEntitySearch.new(song_name, 'track', token).call
     "spotify:track:#{id}" unless id.nil?
   end
 
