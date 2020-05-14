@@ -1,22 +1,24 @@
 # frozen_string_literal: true
+
 class AddSongsToPlaylist
-  BASE_URL = "https://api.spotify.com/v1/playlists/"
+
+  BASE_URL = 'https://api.spotify.com/v1/playlists/'
 
   def initialize(playlist_name, path, token)
     @playlist_name = playlist_name
     @path = path
     @token = token
   end
-  
+
   def call
     playlist = find_playlist
     songlist = create_songlist
     url = build_url(playlist, songlist)
     add_tracks(url)
   end
-  
+
   private
-  
+
   attr_reader :playlist_name, :path, :token
 
   def find_playlist
@@ -24,7 +26,7 @@ class AddSongsToPlaylist
   end
 
   def create_songlist(list_of_songs = [])
-    File.open(path).each {|song_title| add_song_to_list(song_title, list_of_songs) } 
+    File.open(path).each { |song_title| add_song_to_list(song_title, list_of_songs) }
     list_of_songs.join(',')
   end
 
@@ -43,8 +45,7 @@ class AddSongsToPlaylist
   end
 
   def add_tracks(url_adress)
-    HTTParty.post(url_adress, headers: { Authorization: "Bearer #{token}" }
-    )
+    HTTParty.post(url_adress, headers: { Authorization: "Bearer #{token}" })
   end
 
 end
