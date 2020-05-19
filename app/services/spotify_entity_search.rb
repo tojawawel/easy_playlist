@@ -12,7 +12,7 @@ class SpotifyEntitySearch
 
   def call
     url = build_url
-    response = get_response(url)
+    response = JSON.parse(get_response(url).body, symbolize_names: true)
     get_result(response)
   end
 
@@ -29,7 +29,7 @@ class SpotifyEntitySearch
   end
 
   def get_result(item)
-    item[type.pluralize]['items'].first['id'] if item[type.pluralize]['items'].present?
+    item[type.pluralize.to_sym][:items].first[:id] if item[type.pluralize.to_sym][:items].present?
   end
 
 end
