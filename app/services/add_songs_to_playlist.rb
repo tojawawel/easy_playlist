@@ -25,19 +25,8 @@ class AddSongsToPlaylist
     SpotifyEntitySearch.new(playlist_name, 'playlist', token).call
   end
 
-  def create_songlist(list_of_songs = [])
-    File.open(path).each { |song_title| add_song_to_list(song_title, list_of_songs) }
-    list_of_songs.join(',')
-  end
-
-  def add_song_to_list(song_name, list)
-    track = find_track(song_name)
-    list << track if track.present?
-  end
-
-  def find_track(song_name)
-    id = SpotifyEntitySearch.new(song_name, 'track', token).call
-    "spotify:track:#{id}" unless id.nil?
+  def create_songlist
+    SonglistCreator.new(path, token).call
   end
 
   def build_url(playlist_name, created_songlist)
