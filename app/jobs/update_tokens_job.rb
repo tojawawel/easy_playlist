@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UpdateTokensJob < ApplicationJob
+class UpdateTokenJob < ApplicationJob
 
   queue_as :default
 
