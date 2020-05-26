@@ -2,7 +2,7 @@
 
 class AddSongsToPlaylist
 
-  BASE_URL = 'https://api.spotify.com/v1/playlists/'
+  BASE_URL = 'https://api.spotify.com/v1/playlists/'.freeze
 
   def initialize(playlist_name, path, token)
     @playlist_name = playlist_name

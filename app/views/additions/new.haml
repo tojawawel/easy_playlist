@@ -1,6 +1,6 @@
 = simple_form_for @addition do |f|
   = f.error_notification
   =f.input :data, as: :file, required: false, error: true, label: "File"
-  =f.input :playlist_name, as: :select, collection: GetPlaylistListService.new(EncryptionService.decrypt(current_user.token), current_user).call, include_blank: false, error: false
+  =f.input :playlist_name, as: :select, collection: FetchListOfPlaylists.new(EncryptionService.decrypt(current_user.token), current_user).call, include_blank: false, error: false
   =f.submit class: "btn btn-primary"
   

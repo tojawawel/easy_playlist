@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class GetPlaylistListService
+class FetchListOfPlaylists
 
-  URL = 'https://api.spotify.com/v1/me/playlists?limit=50'
+  URL = 'https://api.spotify.com/v1/me/playlists?limit=50'.freeze
 
   def initialize(auth_token, user)
     @auth_token = auth_token

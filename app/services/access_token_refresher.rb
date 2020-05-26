@@ -2,7 +2,7 @@
 
 class AccessTokenRefresher
 
-  URL = 'https://accounts.spotify.com/api/token'
+  URL = 'https://accounts.spotify.com/api/token'.freeze
 
   def initialize(user)
     @user = user
