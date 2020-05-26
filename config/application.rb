@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -8,6 +10,7 @@ Bundler.require(*Rails.groups)
 
 module EasyPlaylist
   class Application < Rails::Application
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
@@ -16,5 +19,6 @@ module EasyPlaylist
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.active_job.queue_adapter == :sidekiq
+
   end
 end

@@ -3,14 +3,13 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  config.omniauth :spotify, Rails.application.credentials.spotify[:client_id],
+                  Rails.application.credentials.spotify[:client_secret],
+                  scope:
+                    %w[playlist-modify-private
+                       playlist-modify-public
+                       user-read-email].join(' ')
 
-  config.omniauth :spotify, Rails.application.credentials.spotify[:client_id], 
-                            Rails.application.credentials.spotify[:client_secret], 
-                            scope: 
-                              %w(playlist-modify-private,
-                                 playlist-modify-public
-                                 user-read-email).join(' ')
-                            
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.

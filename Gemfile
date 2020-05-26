@@ -6,26 +6,26 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
-gem 'httparty', '~> 0.13.7'
 gem 'haml'
-gem 'omniauth-spotify'
+gem 'httparty', '~> 0.13.7'
 gem 'jbuilder', '~> 2.7'
+gem 'omniauth-spotify'
+gem 'paperclip', '~> 6.0.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.1'
-gem 'sass-rails', '>= 6'
 gem 'redis'
+gem 'sass-rails', '>= 6'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'simple_form'
-gem "paperclip", "~> 6.0.0"
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'pry', '~> 0.12.2'
-  gem 'pry-rails'
   gem 'pry-nav'
+  gem 'pry-rails'
 end
 
 group :development do

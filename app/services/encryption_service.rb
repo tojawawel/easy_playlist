@@ -1,5 +1,7 @@
 # frozen_string_literal: true
+
 class EncryptionService
+
   SALT = Rails.application.credentials.salt
   KEY = ActiveSupport::KeyGenerator.new('password').generate_key(SALT, 32).freeze
 
@@ -20,4 +22,5 @@ class EncryptionService
   def encryptor
     ActiveSupport::MessageEncryptor.new(KEY)
   end
+
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdditionsController < ApplicationController
 
   def new
@@ -8,7 +10,7 @@ class AdditionsController < ApplicationController
     @addition = Addition.new(addition_params)
     data = params[:addition][:data]
     name = params[:addition][:playlist_name]
-    
+
     AddSongsToPlaylist.new(name, data, auth_token).call
 
     if @addition.save
@@ -18,9 +20,8 @@ class AdditionsController < ApplicationController
     end
   end
 
-  
   private
-  
+
   def auth_token
     EncryptionService.decrypt(current_user.token)
   end
@@ -28,9 +29,5 @@ class AdditionsController < ApplicationController
   def addition_params
     params.require(:addition).permit(:data, :playlist_name)
   end
-end
 
-  def add_songs_to_playlist
-    AddToPlaylistJob.perform_later(auth_token)
-    redirect_to root_path, notice: 'Post was successfully created.'
-  end
+end
