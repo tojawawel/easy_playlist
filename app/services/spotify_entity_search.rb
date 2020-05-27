@@ -29,7 +29,7 @@ class SpotifyEntitySearch
   end
 
   def get_result(item)
-    item[type.pluralize.to_sym][:items].first[:id] if item[type.pluralize.to_sym][:items].present?
+    item[type.pluralize.to_sym][:items].first[:id] if item[:error]&.empty? && item[type.pluralize.to_sym][:items].present?
   end
 
 end
