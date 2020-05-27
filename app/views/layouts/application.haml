@@ -11,4 +11,8 @@
       =render 'layouts/user_navbar'
     - else
       =render 'layouts/guest_navbar'
+    .container
+      - flash.each do |name,msg|
+        %div{class: "alert alert-#{name}"}
+          = msg
     = yield

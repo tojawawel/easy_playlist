@@ -27,6 +27,7 @@ class AddSongsToPlaylist
 
   def create_songlist
     SonglistCreator.new(path, token).call
+  rescue TypeError
   end
 
   def build_url(playlist_name, created_songlist)

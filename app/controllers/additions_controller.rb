@@ -14,7 +14,8 @@ class AdditionsController < ApplicationController
     AddSongsToPlaylist.new(name, data, auth_token).call
 
     if @addition.save
-      flash[:success] = 'addition was successfully created'
+      flash[:success] = 'Songs were added to playlist!'
+      redirect_to new_addition_path
     else
       render 'new'
     end
