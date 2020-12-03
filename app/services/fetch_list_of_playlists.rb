@@ -2,7 +2,7 @@
 
 class FetchListOfPlaylists
 
-  URL = 'https://api.spotify.com/v1/me/playlists?limit=50'.freeze
+  URL = 'https://api.spotify.com/v1/me/playlists?limit=50'
 
   def initialize(auth_token, user)
     @auth_token = auth_token
@@ -20,7 +20,6 @@ class FetchListOfPlaylists
   def playlists_names
     list = []
     playlists = JSON.parse(download_playlists.body, symbolize_names: true)[:items]
-    
     playlists.each do |playlist|
       list << playlist[:name] if playlist[:owner][:id] == user.uid
     end
