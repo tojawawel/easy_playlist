@@ -2,27 +2,6 @@
 
 class SonglistCreator
 
-  CHARACTERS_TO_SUBSTITUTE = {
-    'ę' => 'e',
-    'Ę' => 'E',
-    'ó' => 'o',
-    'Ó' => 'O',
-    'ą' => 'a',
-    'Ą' => 'A',
-    'ś' => 's',
-    'Ś' => 'S',
-    'ł' => 'l',
-    'Ł' => 'L',
-    'ż' => 'z',
-    'Ż' => 'Z',
-    'ź' => 'z',
-    'Ź' => 'Z',
-    'ć' => 'c',
-    'Ć' => 'C',
-    'ń' => 'n',
-    'Ń' => 'N'
-  }.freeze
-
   def initialize(path, token, list_of_songs = [])
     @path = path
     @token = token
@@ -46,8 +25,7 @@ class SonglistCreator
   end
 
   def find_track(song_name)
-    parsed_name = song_name.gsub(/./) {|m| CHARACTERS_TO_SUBSTITUTE.fetch(m, m) }
-    id = SpotifyEntitySearch.new(parsed_name, 'track', token).call
+    id = SpotifyEntitySearch.new(song_name, 'track', token).call
     "spotify:track:#{id}" unless id.nil?
   end
 

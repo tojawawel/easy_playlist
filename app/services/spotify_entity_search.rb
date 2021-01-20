@@ -2,7 +2,8 @@
 
 class SpotifyEntitySearch
 
-  BASE_URL = 'https://api.spotify.com/v1/search?q='.freeze
+  BASE_URL = 'https://api.spotify.com/v1/search?q='
+  include ::NotSupportedCharacters
 
   def initialize(name, type, auth_token)
     @name = name
@@ -21,7 +22,8 @@ class SpotifyEntitySearch
   attr_reader :name, :type, :auth_token
 
   def build_url
-    "#{BASE_URL}#{name}&type=#{type}&limit=1"
+    parsed_name = name.gsub(/./) {|m| CHARACTERS_TO_SUBSTITUTE.fetch(m, m) }
+    "#{BASE_URL}#{parsed_name}&type=#{type}&limit=1"
   end
 
   def get_response(url_adress)
