@@ -24,7 +24,7 @@ class AdditionsController < ApplicationController
   private
 
   def auth_token
-    EncryptionService.decrypt(current_user.token)
+    EncryptionService.new.decrypt(current_user.token)
   end
 
   def addition_params
