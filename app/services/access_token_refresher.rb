@@ -12,7 +12,6 @@ class AccessTokenRefresher
     new_encrypted_access_token = encrypt_access_token
     user.update(token: new_encrypted_access_token)
   end
-
   
 
   private
