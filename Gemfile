@@ -7,7 +7,7 @@ ruby '2.7.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'haml'
-gem 'httparty', '~> 0.13.7'
+gem 'httparty', '~> 0.21.0'
 gem 'jbuilder', '~> 2.7'
 gem 'omniauth-spotify'
 gem 'paperclip', '~> 6.0.0'
